@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sonde Météo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoR0geUU7nR1InWhk0t_lj2CPTi4XOtz4&callback=initMap"
+        async defer></script>
+</head>
+
+<body>
+    <div class="background">
+        <div class="menu">
+            <a href="./index.html" class="menu-item">Accueil</a>
+            <a href="./tab.html" class="menu-item">Relevés</a>
+            <a href="./graph.html" class="menu-item">Graphiques</a>
+        </div>
+        <div class="control_panel">
+            <div class="ligne1"></div>
+            <div class="humidite" id="humiditeDiv">
+                <p>N/A %</p>
+            </div>
+            <div class="txt_humidite">
+                <p>Humidité :</p>
+            </div>
+
+            <div class="temperature" id="temperatureDiv">
+                <p>N/A° C</p>
+            </div>
+            <div class="txt_temperature">
+                <p>Température :</p>
+            </div>
+
+            <div class="pression" id="pressionDiv">
+                <p>N/A hPa</p>
+            </div>
+            <div class="txt_pression">
+                <p>Pression :</p>
+            </div>
+
+            <div class="ligne2"></div>
+
+            <div class="date">
+                <p class="current-date"></p>
+            </div>
+            <div class="time">
+                <p class="current-time"></p>
+            </div>
+            <button class="btn_rafraichir" onclick="refreshPage()">Rafraîchir</button>
+            <div class="img_fleche" onclick="toggleControlPanel()">
+                <img src="../images/fleche.png" alt="Bouton Image">
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

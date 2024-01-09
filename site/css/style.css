@@ -1,0 +1,352 @@
+/*Applique la police a tout les textes + bloque la fenêtre*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+/* Police d'écriture */
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('fonts/SFPRODISPLAYREGULAR.OTF') format('otf'),
+        url('fonts/SFPRODISPLAYMEDIUM.OTF') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Texte général */
+.custom-button,
+.temperature,
+.pression,
+.humidite,
+.txt_temperature,
+.txt_pression,
+.txt_humidite,
+.date,
+.time {
+    font-family: 'SF Pro Display', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Background du site */
+.background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/wallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Style de la barre de navigation */
+.menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    z-index: 3;
+}
+
+.menu-item {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    transition: color 0.3s, transform 0.3s;
+}
+
+.menu-item:hover {
+    color: #c0c0c0;
+    transform: scale(1.1);
+}
+
+/* Panneau principal de la page */
+.control_panel {
+    width: 800px;
+    height: 350px;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2vw;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: height 0.5s, top 0.5s;
+}
+
+/* Lignes décoratives sur le panneau de configuration */
+.ligne1,
+.ligne2 {
+    position: absolute;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.50);
+    border-width: 2px 0 0 0;
+    width: 800px;
+    height: 0px;
+}
+
+.ligne1 {
+    top: 75px;
+}
+
+.ligne2 {
+    bottom: 65px;
+}
+
+/* Textes du panneau principal */
+.temperature,
+.humidite,
+.pression,
+.txt_temperature,
+.txt_pression,
+.txt_humidite {
+    color: white;
+    position: absolute;
+    margin: 0;
+    z-index: 3;
+}
+
+/* Mise en forme du texte "Temperature" */
+.txt_temperature {
+    top: 70px;
+    left: 297px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* Température (en °C) */
+.temperature {
+    top: 35px;
+    left: 260px;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+/* La pression (en hPa) */
+.pression {
+    left: 40px;
+    top: 130px;
+    font-size: 45px;
+}
+
+/* Mise en forme du texte "Pression" */
+.txt_pression {
+    top: 100px;
+    left: 50px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* L'humidité en (%) */
+.humidite {
+    top: 100px;
+    font-size: 65px;
+    right: 50px;
+}
+
+/* Mise en forme du texte "Humidité" */
+.txt_humidite {
+    top: 100px;
+    left: 610px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* La date du jour */
+.date {
+    color: white;
+    position: absolute;
+    top: -34px;
+    right: 25px;
+    font-size: 45px;
+}
+
+/* L'heure et minute du jour */
+.time {
+    color: white;
+    position: absolute;
+    top: -47px;
+    right: 660px;
+    font-size: 55px;
+}
+
+/* La flèche qui étire le panneau principal */
+.img_fleche {
+    position: absolute;
+    bottom: 17px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    height: 30px;
+    filter: invert(1);
+    z-index: 3;
+    opacity: 0.7;
+}
+
+/* Affiche l'image de la flèche */
+.img_fleche img {
+    width: 35px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Bouton rafraîchissement de la page */
+.btn_rafraichir {
+    background-color: white;
+    color: grey;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 16px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    opacity: 0.6;
+}
+
+/* Au survol du bouton, celui-ci change de couleur */
+.btn_rafraichir:hover {
+    opacity: 1;
+    background-color: darkgray;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Étend la page lorsque la flèche est sélectionnée */
+.control_panel--expanded {
+    height: 700px;
+    top: 50%;
+}
+
+/* Style du tableau des relevés */
+.releves-table {
+    margin-top: 20px;
+    color: white;
+}
+
+/* Style de l'en-tête du tableau des relevés */
+.releves-table h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Style du tableau des relevés */
+.releves-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.releves-table th,
+.releves-table td {
+    border: 1px solid #555;
+    padding: 12px;
+    text-align: center;
+}
+
+.releves-table th {
+    background-color: #333;
+    color: #ddd;
+}
+
+.releves-table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.releves-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Style du texte dans le conteneur du graphique */
+.graph-container,
+.graph-container h2,
+.chart-legend,
+.chart-legend li {
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center; /* Ajout de l'alignement central */
+}
+
+/* Ajustement de la taille du texte pour les données */
+.chart-legend li {
+    font-size: 18px; /* Ajustez la taille du texte ici */
+}
+
+.graph-container h2 {
+    font-size: 24px; /* Ajustez la taille du titre ici */
+}
+
+/* Style des légendes du graphique */
+.chart-legend {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.chart-legend li {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chart-legend span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+/* Style des couleurs des légendes du graphique */
+.chart-legend .temperature span {
+    background-color: rgba(255, 99, 132, 1);
+}
+
+.chart-legend .pression span {
+    background-color: rgba(54, 162, 235, 1);
+}
+
+.chart-legend .humidite span {
+    background-color: rgba(255, 206, 86, 1);
+}
+
+/* Écriture en haut */
+.header {
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+
+.header h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    margin-top: 0; /* Ajustement de la marge supérieure */
+    text-transform: uppercase; /* Met le texte en majuscules */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

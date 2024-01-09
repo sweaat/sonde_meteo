@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sonde Météo - Relevés</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .table-container {
+            max-height: 600px; /* Ajustez cette valeur en fonction de vos besoins */
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="menu">
+            <a href="./index.html" class="menu-item">Accueil</a>
+            <a href="./tab.html" class="menu-item">Relevés</a>
+            <a href="./graph.html" class="menu-item">Graphiques</a>
+        </div>
+        <!-- Tableau des relevés -->
+        <div class="releves-table">
+            <h2>Relevés des 24 dernières heures</h2>
+            <div class="table-container">
+                <table id="relevesTable">
+                    <thead>
+                        <tr>
+                            <th>Température (°C)</th>
+                            <th>Pression (hPa)</th>
+                            <th>Humidité (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Les données seront ajoutées ici dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Récupération des données depuis votre API (remplacez l'URL par votre API réelle)
+            fetch('http://192.168.252.119/apisite/get_meteo.php')
+                .then(response => response.json())
+                .then(data => {
+                    // Les données récupérées seront dans la variable 'data'
+                    // Format supposé : [{ temp: 23.59, hum: 45.28, pres: 1000.63 }, ...]
+
+                    // Appel de la fonction pour mettre à jour le tableau
+                    updateTable(data);
+                })
+                .catch(error => console.error('Erreur lors de la récupération des données:', error));
+        });
+
+        function updateTable(data) {
+            const tableBody = document.getElementById('tableBody');
+
+            // Efface le contenu existant du tableau
+            tableBody.innerHTML = '';
+
+            // Boucle à travers les données et ajoute-les au tableau
+            data.forEach(entry => {
+                const row = document.createElement('tr');
+                const currentTime = new Date();
+                const formattedTime = `${currentTime.getHours().toString().padStart(2, '0')}:${currentTime.getMinutes().toString().padStart(2, '0')}`;
+                row.innerHTML = `
+                    <td>${entry.temp}°C</td>
+                    <td>${entry.pres} hPa</td>
+                    <td>${entry.hum}%</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+
+</html>
